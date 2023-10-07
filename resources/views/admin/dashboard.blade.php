@@ -13,12 +13,8 @@
                                 <i class="mdi mdi-calendar-range"></i>
                             </span>
                         </div>
-                        <a href="javascript: void(0);" class="btn btn-blue btn-sm ms-2">
-                            <i class="mdi mdi-autorenew"></i>
-                        </a>
-                        <a href="javascript: void(0);" class="btn btn-blue btn-sm ms-1">
-                            <i class="mdi mdi-filter-variant"></i>
-                        </a>
+                       
+                       
                     </form>
                 </div>
                 <h4 class="page-title">Dashboard</h4>
@@ -34,14 +30,14 @@
                     <div class="row">
                         <div class="col-6">
                             <div class="avatar-lg rounded-circle bg-primary border-primary border shadow">
-                                <i class="fe-heart font-22 avatar-title text-white"></i>
+                                <i class="material-symbols-outlined font-22 text-center pt-3 avatar-title text-white">category</i>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="text-end">
-                                <h3 class="text-dark mt-1">$<span data-plugin="counterup">58,947</span>
+                                <h3 class="text-dark mt-1"><span data-plugin="counterup">{{$activeCategories}}</span>
                                 </h3>
-                                <p class="text-muted mb-1 text-truncate">Total Revenue</p>
+                                <p class="text-muted mb-1 text-truncate">Active Catgories</p>
                             </div>
                         </div>
                     </div> <!-- end row-->
@@ -55,14 +51,14 @@
                     <div class="row">
                         <div class="col-6">
                             <div class="avatar-lg rounded-circle bg-success border-success border shadow">
-                                <i class="fe-shopping-cart font-22 avatar-title text-white"></i>
+                                <i class="material-symbols-outlined font-22 text-center pt-3 avatar-title text-white">airplanemode_inactive</i>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="text-end">
-                                <h3 class="text-dark mt-1"><span data-plugin="counterup">127</span>
+                                <h3 class="text-dark mt-1"><span data-plugin="counterup">{{$inActiveCategories}}</span>
                                 </h3>
-                                <p class="text-muted mb-1 text-truncate">Today's Sales</p>
+                                <p class="text-muted mb-1 text-truncate">In Active Catgories</p>
                             </div>
                         </div>
                     </div> <!-- end row-->
@@ -76,14 +72,14 @@
                     <div class="row">
                         <div class="col-6">
                             <div class="avatar-lg rounded-circle bg-info border-info border shadow">
-                                <i class="fe-bar-chart-line- font-22 avatar-title text-white"></i>
+                                <i class="material-symbols-outlined font-22 text-center pt-3 avatar-title text-white">post_add</i>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="text-end">
-                                <h3 class="text-dark mt-1"><span data-plugin="counterup">0.58</span>%
+                                <h3 class="text-dark mt-1"><span data-plugin="counterup">{{$activePost}}</span>
                                 </h3>
-                                <p class="text-muted mb-1 text-truncate">Conversion</p>
+                                <p class="text-muted mb-1 text-truncate">Active Post</p>
                             </div>
                         </div>
                     </div> <!-- end row-->
@@ -97,14 +93,14 @@
                     <div class="row">
                         <div class="col-6">
                             <div class="avatar-lg rounded-circle bg-warning border-warning border shadow">
-                                <i class="fe-eye font-22 avatar-title text-white"></i>
+                                <i class="material-symbols-outlined font-22 text-center pt-3 avatar-title text-white">airplanemode_inactive</i>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="text-end">
-                                <h3 class="text-dark mt-1"><span data-plugin="counterup">78.41</span>k
+                                <h3 class="text-dark mt-1"><span data-plugin="counterup">{{$inActivePost}}</span>
                                 </h3>
-                                <p class="text-muted mb-1 text-truncate">Today's Visits</p>
+                                <p class="text-muted mb-1 text-truncate">In Active Post</p>
                             </div>
                         </div>
                     </div> <!-- end row-->
@@ -114,7 +110,7 @@
     </div>
     <!-- end row-->
 
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-lg-4">
             <div class="card">
                 <div class="card-body">
@@ -187,9 +183,9 @@
             </div> <!-- end card -->
         </div> <!-- end col-->
     </div>
-    <!-- end row -->
+    <!-- end row --> --}}
 
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-xl-6">
             <div class="card">
                 <div class="card-body">
@@ -560,5 +556,5 @@
             </div> <!-- end card-->
         </div> <!-- end col -->
     </div>
-    <!-- end row -->
+    <!-- end row --> --}}
 @endsection

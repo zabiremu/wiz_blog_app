@@ -24,6 +24,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     // Post Controller
     Route::controller(PostController::class)->prefix('/posts')->name('posts.')->group(function () {
         Route::get('/index', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
         Route::post('/store', 'store')->name('store');
         Route::get('/edit/{id}', 'edit')->name('edit');
         Route::put('/update/{id}', 'update')->name('update');

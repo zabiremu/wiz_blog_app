@@ -21,14 +21,19 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
+                    <div class="w-25 ms-auto text-end">
+                        <a href="{{route($info->form_create)}}" class="btn btn-primary waves-effect waves-light">Create</a>
+                    </div>
                     <div class="table-responsive mb-3">
                         <table class="table mb-0">
                             <thead>
                                 <tr>
                                     <th>#</th>
+                                    <th>Category Name</th>
                                     <th>Title</th>
                                     <th>Descritpion</th>
                                     <th>Author</th>
+                                    <th>Published Date</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -37,9 +42,11 @@
                                 @forelse ($data as $key => $row)
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
+                                        <td>{{ Str::limit($row->categories->title, 20, '....') }}</td>
                                         <td>{{ Str::limit($row->title, 20, '....') }}</td>
-                                        <td>{{ Str::limit($row->details, 30, '....') }}</td>
-                                        <td>{{ Str::limit($row->author_name, 30, '....') }}</td>
+                                        <td>{!! Str::limit($row->details, 30, '....') !!}</td>
+                                        <td>{{ Str::limit($row->users->name, 30, '....') }}</td>
+                                        <td>{{ $row->created_at->format('d F Y H:i A') }}</td>
                                         <td>
                                             @if ($row->status === 1)
                                                 <span class="badge bg-success rounded-pill">Success</span>
@@ -61,7 +68,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="6" class="text-center">
+                                        <td colspan="7" class="text-center">
                                             No Data
                                         </td>
                                     </tr>

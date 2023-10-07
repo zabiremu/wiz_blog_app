@@ -61,12 +61,12 @@
                     </div>
                 </li>
 
-                <li class="menu-title mt-2">Apps</li>
+                <li class="menu-title mt-2">Posts</li>
 
                 <li>
                     <a href="#sidebarEcommerce" data-bs-toggle="collapse">
                         <i class="mdi mdi-cart-outline"></i>
-                        <span> Category </span>
+                        <span> Posts </span>
                         <span class="menu-arrow"></span>
                     </a>
                     <div class="collapse" id="sidebarEcommerce">
@@ -76,7 +76,7 @@
                             </li>
 
                             <li>
-                                <a href="">Post</a>
+                                <a href="{{ route('admin.posts.index') }}">Post</a>
                             </li>
                         </ul>
                     </div>

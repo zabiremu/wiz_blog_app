@@ -82,48 +82,59 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="header-title">{{ $info->all_data }}</h4>
-                    <table class="table dt-responsive nowrap w-100">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Name</th>
-                                <th>Slug</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($data as $key => $row)
+                    <div class="table-responsive mb-3">
+                        <table class="table mb-0 ">
+                            <thead>
                                 <tr>
-                                    <td>{{ $key + 1 }}</td>
-                                    <td>{{ Str::limit($row->title,20, '....') }}</td>
-                                    <td>{{ Str::limit($row->slug, 10 , "....") }}</td>
-                                    <td>
-                                        @if ($row->status === 1)
-                                            <span class="badge bg-success rounded-pill">Success</span>
-                                        @else
-                                            <span class="badge bg-danger rounded-pill">in-active</span>
-                                        @endif
-                                    </td>
-                                    <td>
-                                        <a href="{{ route($info->form_edit, $row->id) }}" class="edit"><i
-                                                class="material-symbols-outlined">edit</i></a>
-                                        <span class="delete d-inline-block" style="cursor: pointer"><i
-                                                class="material-symbols-outlined text-danger">delete</i></span>
-                                        <form action="{{ route($info->form_destroy, $row->id) }}" method="post">
-                                            @csrf
-                                            @method('delete')
-                                        </form>
-
-                                    </td>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Slug</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
                                 </tr>
-                            @endforeach
+                            </thead>
+                            <tbody>
+                                @forelse ($data as $key => $row)
+                                    <tr>
+                                        <td>{{ $key + 1 }}</td>
+                                        <td>{{ Str::limit($row->title, 20, '....') }}</td>
+                                        <td>{{ Str::limit($row->slug, 10, '....') }}</td>
+                                        <td>
+                                            @if ($row->status === 1)
+                                                <span class="badge bg-success rounded-pill">Success</span>
+                                            @else
+                                                <span class="badge bg-danger rounded-pill">in-active</span>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <a href="{{ route($info->form_edit, $row->id) }}" class="edit"><i
+                                                    class="material-symbols-outlined">edit</i></a>
+                                            <span class="delete d-inline-block" style="cursor: pointer"><i
+                                                    class="material-symbols-outlined text-danger">delete</i></span>
+                                            <form action="{{ route($info->form_destroy, $row->id) }}" method="post">
+                                                @csrf
+                                                @method('delete')
+                                            </form>
+
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="5" class="text-center">
+                                            No Data
+                                        </td>
+                                    </tr>
+                                @endforelse
 
 
 
 
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+
+
+
+                    </div>
 
                     <nav aria-label="Page navigation example">
                         <ul class="pagination">
@@ -132,21 +143,13 @@
                         </ul>
                     </nav>
 
+
                 </div> <!-- end card body-->
             </div> <!-- end card -->
         </div><!-- end col-->
         <!-- end row-->
     </div>
     @push('customJs')
-        <!-- Datatable js-->
-        <script src="{{ asset('admin/assets/js/pages/datatables.init.js') }}"></script>
-
-        <!-- datatable js start -->
-        <script src="{{ asset('admin/assets/libs/datatables.net/js/jquery.dataTables.min.js') }}"></script>
-        <script src="{{ asset('admin/assets/libs/datatables.net-bs5/js/dataTables.bootstrap5.min.js') }}"></script>
-        <script src="{{ asset('admin/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
-        <script src="{{ asset('admin/assets/libs/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js') }}"></script>
-
         <script>
             $('#title').on('keyup', function() {
                 categoryName = $(this).val();

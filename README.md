@@ -68,4 +68,17 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 ## Installation
 
 1. #####
-    ####### git clone https://github.com/zabiremu/wiz_blog_app.git
+   git clone https://github.com/zabiremu/wiz_blog_app.git
+2. #####
+   If Composer is not currently installed, please proceed to install it, and then run the "composer update" command. If you already have Composer installed, simply run the "composer update" command.
+3. #####
+   npm install 
+4. #####
+   Please create database in mysql then php artisan migrate --seed . 
+5. #####
+   php artisan storage:link
+6. #####
+   php artisan serve
+7. #####
+   npm run dev
+ 

@@ -18,6 +18,7 @@ class PostController extends Controller
         $info->page_title = 'All Posts';
         $info->form_create = 'admin.posts.create';
         $info->form_edit = 'admin.posts.edit';
+        $info->form_show = 'admin.posts.show';
         $info->form_destroy = 'admin.posts.destroy';
         return view('admin.post.index', compact('data', 'info'));
     }
@@ -52,11 +53,19 @@ class PostController extends Controller
     public function edit($id)
     {
         $info = new stdClass();
-        $info->page_title = 'Create Posts';
+        $info->page_title = 'Edit Posts';
         $info->form_update = 'admin.posts.update';
         $categories = Category::where('status',1)->orderBy('id', 'DESC')->get();
         $row = Post::where('id', $id)->first();
         return view('admin.post.create', compact('info', 'categories', 'row'));
+    }
+
+    public function show($id)
+    {
+        $info = new stdClass();
+        $info->page_title = 'Show Posts';
+        $row = Post::with('users', 'categories')->where('id', $id)->first();
+        return view('admin.post.view', compact('info', 'row'));
     }
 
     public function update(Request $request, $id)

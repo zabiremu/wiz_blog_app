@@ -22,7 +22,8 @@
             <div class="card">
                 <div class="card-body">
                     <div class="w-25 ms-auto text-end">
-                        <a href="{{route($info->form_create)}}" class="btn btn-primary waves-effect waves-light">Create</a>
+                        <a href="{{ route($info->form_create) }}"
+                            class="btn btn-primary waves-effect waves-light">Create</a>
                     </div>
                     <div class="table-responsive mb-3">
                         <table class="table mb-0">
@@ -49,7 +50,7 @@
                                         <td>{{ $row->created_at->format('d F Y H:i A') }}</td>
                                         <td>
                                             @if ($row->status === 1)
-                                                <span class="badge bg-success rounded-pill">Success</span>
+                                                <span class="badge bg-success rounded-pill">Active</span>
                                             @else
                                                 <span class="badge bg-danger rounded-pill">in-active</span>
                                             @endif
@@ -57,6 +58,8 @@
                                         <td>
                                             <a href="{{ route($info->form_edit, $row->id) }}" class="edit"><i
                                                     class="material-symbols-outlined">edit</i></a>
+                                            <a href="{{ route($info->form_show, $row->id) }}" class="edit"><i
+                                                    class="material-symbols-outlined text-info">preview</i></a>
                                             <span class="delete d-inline-block" style="cursor: pointer"><i
                                                     class="material-symbols-outlined text-danger">delete</i></span>
                                             <form action="{{ route($info->form_destroy, $row->id) }}" method="post">

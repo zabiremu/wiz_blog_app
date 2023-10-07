@@ -8,7 +8,7 @@ use App\Http\Controllers\Admin\Category\CategoryController;
 
 
 
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
     // Dashboard Controller
     Route::controller(DashboardController::class)->group(function () {
         Route::get('/dashboard', 'index')->name('dashboard');
@@ -27,6 +27,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/create', 'create')->name('create');
         Route::post('/store', 'store')->name('store');
         Route::get('/edit/{id}', 'edit')->name('edit');
+        Route::get('/show/{id}', 'show')->name('show');
         Route::put('/update/{id}', 'update')->name('update');
         Route::delete('/destroy{id}', 'destroy')->name('destroy');
     });

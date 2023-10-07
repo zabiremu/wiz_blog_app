@@ -101,7 +101,7 @@
                                         <td>{{ Str::limit($row->slug, 10, '....') }}</td>
                                         <td>
                                             @if ($row->status === 1)
-                                                <span class="badge bg-success rounded-pill">Success</span>
+                                                <span class="badge bg-success rounded-pill">Active</span>
                                             @else
                                                 <span class="badge bg-danger rounded-pill">in-active</span>
                                             @endif

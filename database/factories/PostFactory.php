@@ -24,7 +24,8 @@ class PostFactory extends Factory
             'details' => fake()->paragraph(),
             'category_id'=> fake()->numberBetween(1,10),
             'user_id'=> 1,
-            'status'=> fake()->numberBetween(0,1)
+            'status'=> fake()->numberBetween(0,1),
+            'thumbnail'=> fake()->imageUrl(360, 360, 'natures', true),
         ];
     }
 }

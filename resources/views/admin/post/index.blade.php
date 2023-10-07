@@ -30,6 +30,7 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
+                                    <th>Image</th>
                                     <th>Category Name</th>
                                     <th>Title</th>
                                     <th>Descritpion</th>
@@ -43,6 +44,7 @@
                                 @forelse ($data as $key => $row)
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
+                                        <td><img src="{{$row->thumbnail}}" alt="" width="80"></td>
                                         <td>{{ Str::limit($row->categories->title, 20, '....') }}</td>
                                         <td>{{ Str::limit($row->title, 20, '....') }}</td>
                                         <td>{!! Str::limit($row->details, 30, '....') !!}</td>

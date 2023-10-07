@@ -31,7 +31,7 @@
                 <div class="card-body">
                     <form
                         action="@if (isset($row->id)) {{ route($info->form_update, $row->id) }}@else{{ route($info->form_store) }} @endif"
-                        method="post">
+                        method="post" enctype="multipart/form-data">
                         @csrf
                         @if (isset($row))
                             @method('PUT')
@@ -78,7 +78,17 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-
+                            <label class="form-label" for="">Thumbail</label>
+                            <input type="file"
+                                class="form-control @error('thumbnail')
+                            is-invalid
+                            @enderror"
+                                name="thumbnail">
+                            @error('thumbnail')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
                             <div class="form-check form-switch">
                                 <input type="checkbox" class="form-check-input d-none" name="status" checked
                                     value="0">
@@ -89,6 +99,7 @@
                                 <label class="form-check-label" for="">Status</label>
                             </div>
                         </div>
+
                         <button class="btn btn-primary waves-effect waves-light">Submit</button>
                     </form>
                 </div>

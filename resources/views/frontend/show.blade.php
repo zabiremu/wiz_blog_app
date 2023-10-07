@@ -3,9 +3,9 @@
 @section('content')
     <div class="container">
         <div class="row mt-3">
-            <div class="col-lg-12 mt-5 mb-3">
-                <div class="card mb-3">
-                    <img src="..." class="card-img-top" alt="...">
+            <div class="col-lg-12 px-5 py-5 mt-5 mb-3">
+                <div class="card mb-3 px-5 py-5">
+                    <img src="{{$data->thumbnail}}" class="d-block w-35" alt="" style="width:400px!important">
                     <div class="card-body">
                         <h5 class="card-title">{{ $data->title }}</h5>
                         <p class="card-text">{!! $data->details !!}</p>

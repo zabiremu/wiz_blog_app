@@ -27,6 +27,12 @@
                     <div class="row">
 
                         <div class="col-lg-4">
+                            <span>Thumbnail:</span>
+                        </div>
+                        <div class="col-lg-8">
+                            <span><img src="{{ $row->thumbnail }}" alt="" width="200"></span>
+                        </div>
+                        <div class="col-lg-4">
                             <span>Category:</span>
                         </div>
 

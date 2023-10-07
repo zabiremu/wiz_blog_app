@@ -6,7 +6,7 @@
             @foreach ($data as $row)
                 <div class="col-lg-4 mt-5 mb-3">
                     <div class="card">
-                        <img src="..." class="card-img-top" alt="...">
+                        <img src="{{$row->thumbnail}}" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">{{ $row->title }}</h5>
                             <p class="card-text">{!! $row->details !!}</p>

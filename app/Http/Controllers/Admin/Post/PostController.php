@@ -28,7 +28,7 @@ class PostController extends Controller
         $info = new stdClass();
         $info->page_title = 'Create Posts';
         $info->form_store = 'admin.posts.store';
-        $categories = Category::where('status',1)->orderBy('id', 'DESC')->get();
+        $categories = Category::where('status', 1)->orderBy('id', 'DESC')->get();
         return view('admin.post.create', compact('info', 'categories'));
     }
 
@@ -38,6 +38,7 @@ class PostController extends Controller
             'title' => 'required|string|max:200',
             'details' => 'required|string',
             'category_id' => 'required|integer',
+            'thumbnail' => 'required|image|mimes:png,jpg,jpeg,webp',
         ]);
 
         $row = new Post();
@@ -46,6 +47,10 @@ class PostController extends Controller
         $row->details = $request->details;
         $row->status = $request->status;
         $row->user_id = auth()->user()->id;
+        if ($request->hasFile('thumbnail')) {
+            $saveUrl = saveImage($request->thumbnail, 'thumbnail');
+            $row->thumbnail = $saveUrl;
+        }
         $row->save();
         return redirect()->route('admin.posts.index')->with('success', 'Post Successfully Created');
     }
@@ -55,7 +60,7 @@ class PostController extends Controller
         $info = new stdClass();
         $info->page_title = 'Edit Posts';
         $info->form_update = 'admin.posts.update';
-        $categories = Category::where('status',1)->orderBy('id', 'DESC')->get();
+        $categories = Category::where('status', 1)->orderBy('id', 'DESC')->get();
         $row = Post::where('id', $id)->first();
         return view('admin.post.create', compact('info', 'categories', 'row'));
     }
@@ -74,6 +79,7 @@ class PostController extends Controller
             'title' => 'required|string|max:200',
             'details' => 'required|string',
             'category_id' => 'required|integer',
+            'thumbnail' => 'nullable|image|mimes:png,jpg,jpeg,webp',
         ]);
 
         $row = Post::where('id', $id)->first();
@@ -82,12 +88,29 @@ class PostController extends Controller
         $row->details = $request->details;
         $row->status = $request->status;
         $row->user_id = auth()->user()->id;
+        if ($request->hasFile('thumbnail')) {
+            $data = Post::where('id', $id)->first();
+            $explode = explode('/', $data->thumbnail);
+            $end = end($explode);
+            $oldImageName = $end;
+            $path = 'thumbnail/' . $oldImageName;
+            $saveUrl = updateImage($path, $request->thumbnail, 'thumbnail');
+            $data->thumbnail = $saveUrl;
+            $data->save();
+        }
         $row->save();
+
         return redirect()->route('admin.posts.index')->with('success', 'Post Successfully Updated');
     }
 
     public function destroy($id)
     {
+        $data = Post::find($id);
+        $explode = explode('/', $data->thumbnail);
+        $end = end($explode);
+        $oldImageName = $end;
+        $path = 'thumbnail/' . $oldImageName;
+        destroy($path);
         Post::where('id', $id)->delete();
         return redirect()->route('admin.posts.index')->with('success', 'Post Successfully Deleted');
     }

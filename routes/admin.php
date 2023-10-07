@@ -18,6 +18,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/store', 'store')->name('store');
         Route::get('/edit/{id}', 'edit')->name('edit');
         Route::put('/update/{id}', 'update')->name('update');
-        Route::get('/destroy{id}', 'destroy')->name('destroy');
+        Route::delete('/destroy{id}', 'destroy')->name('destroy');
     });
 });
